@@ -1,0 +1,31 @@
+@font-face {
+  font-family: "gotham-rounded-bold";
+  src: url("/fonts/Gotham-Rounded-Font/GothamRoundedBold.otf");
+}
+
+@font-face {
+  font-family: "gotham-rounded-light";
+  src: url("/fonts/Gotham-Rounded-Font/GothamRoundedLight.otf");
+}
+
+@font-face {
+  font-family: "gotham-rounded-light-italic";
+  src: url("/fonts/Gotham-Rounded-Font/GothamRoundedLightItalic.otf");
+}
+
+@font-face {
+  font-family: "gotham-rounded-medium-italic";
+  src: url("/fonts/Gotham-Rounded-Font/GothamRoundedMediumItalic.otf");
+}
+
+@font-face {
+  font-family: "gotham-rounded-medium";
+  src: url("/fonts/Gotham-Rounded-Font/GothamRoundedMedium.otf");
+}
+
+body {
+  font-family: "gotham-rounded-medium";
+}
+html {
+  min-height: 100%;
+}
