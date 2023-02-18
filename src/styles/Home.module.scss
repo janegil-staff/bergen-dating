@@ -1,5 +1,5 @@
 .landing-page {
-  background: url(/images/landingpage.jpeg) no-repeat center center fixed; 
+  background: url(/images/landingpage.jpeg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -8,7 +8,75 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-size: cover; 
+  background-size: cover;
   height: 100vh;
   overflow: hidden;
+  position: relative;
+  .nav-top {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background-color: rgb(0, 0, 0, 0.7);
+
+    header {
+      float: left;
+      margin-left: 25px;
+      color: #fff;
+    }
+    .login-link {
+      float: right;
+      margin: 15px;
+      padding: 8px 20px;
+      border-radius: 25px;
+      font-family: "gotham-rounded-bold";
+      letter-spacing: 1px;
+      font-size: 18px;
+      border: none;
+      cursor: pointer;
+    }
+  }
+  .title {
+    font-family: "gotham-rounded-bold ";
+    color: #fff;
+    letter-spacing: 2px;
+    font-size: 80px;
+    top: 40%;
+    position: absolute;
+    text-shadow: 1px 1px 2px black;
+  }
+  .btn-signup,
+  .btn-login {
+    width: 100%;
+    font-family: "gotham-rounded-bold";
+    padding: 15px;
+    border-radius: 15px;
+    margin: 8px;
+    cursor: pointer;
+  }
+  .btn-signup {
+    background: linear-gradient(
+      90deg,
+      rgba(166, 37, 95, 1) 0%,
+      rgba(205, 60, 108, 1) 44%,
+      rgba(222, 132, 172, 1) 100%
+    );
+    color: white;
+    border: 0;
+    padding: 15px 55px;
+    margin-top: 30px;
+  }
+  .btn-login {
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+  }
+}
+
+.btn-group {
+  text-align: center;
+  color: #fff;
+  padding-top: 200px;
+  border-color: 1px solid #fff;
+  margin: 50px;
+  font-family: "gotham-rounded-";
 }

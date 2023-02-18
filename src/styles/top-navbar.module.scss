@@ -1,0 +1,22 @@
+.nav-top {
+  position: absolute;
+  width: 100%;
+  background-color: rgb(0,0,0,.7);
+
+    header {
+        float: left;
+        margin-left: 25px;
+        color: #fff;
+    }
+    .login-link {
+        float: right;
+        margin: 15px;
+        padding: 8px 20px;
+        border-radius: 25px; 
+        font-family: "gotham-rounded-bold";
+        letter-spacing: 1px;
+        font-size: 18px;
+        border: none;
+        cursor: pointer;
+    }
+}
