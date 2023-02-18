@@ -1,12 +1,13 @@
 import useInput from "@/hooks/use-input";
-import { getProviders, getSession, signIn } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import classes from '@/styles/auth.module.scss';
-const SignIn = props => {
+import {Google, Facebook }from 'react-bootstrap-icons';
+import classes from "@/styles/auth.module.scss";
+import { Button, Form } from "react-bootstrap";
+const SignIn = (props) => {
   const [error, setError] = useState(null);
   const router = useRouter();
-  
   const {
     value: enteredEmail,
     isValid: enteredEmailIsValid,
@@ -43,64 +44,75 @@ const SignIn = props => {
       password: enteredPassword,
     });
 
-    if (result.error) setError(result.error || "Noe gikk galt!");
-    router.replace('/profile')
+    if (result.error) { 
+      setError(result.error || "Noe gikk galt!");
+    } else {
+      router.replace("/profile");
+    }
+    
   };
   return (
     <>
-   <form onSubmit={submitHandler}>
-          <div>
-            <label htmlFor="email">E-post</label>
-            <input
-              className={emailInputClasses}
-              type="email"
-              id="email"
-              onChange={emailChangeHandler}
-              onBlur={emailBlurHandler}
-              value={enteredEmail}
-              required
-              aria-describedby="emailHelp"
-              placeholder="Enter email"
-            />
+      <h2>Logg deg på</h2>
+      <hr />
+      <Form onSubmit={submitHandler}>
+        <Form.Group controlId="formEmail">
+          <Form.Label htmlFor="email">E-post</Form.Label>
+          <Form.Control
+            className={emailInputClasses}
+            type="email"
+            id="email"
+            onChange={emailChangeHandler}
+            onBlur={emailBlurHandler}
+            value={enteredEmail}
+            required
+            aria-describedby="emailHelp"
+            placeholder="Enter email"
+          />
             {emailInputHasError && (
-              <p className={"error-text"}>E-post må inneholde @</p>
-            )}
-          </div>
-          <div>
-            <label htmlFor="password">Passord</label>
-            <input
-              className={passwordInputClasses}
-              type="password"
-              id="password"
-              onChange={passwordChangeHandler}
-              onBlur={passwordBlurHandler}
-              value={enteredPassword}
-              required
-              aria-describedby="paswordHelp"
-              placeholder="Velg et pasord"
-            />
-            {passwordInputHasError && (
-              <p className={"error-text"}>
-                Passord må inneholed mellom 8-16 tegn, minst en bokstav
-              </p>
-            )}
-          </div>
-          <button>Send</button>
-        </form>
-        
-        <div key="Google">
-          <button onClick={() => signIn("google")}>
-            Sign in with Google
-          </button>
-        </div>
- 
-        <div key="Facbook">
-          <button onClick={() => signIn("facebook")}>
-            Sign in with Facebook
-          </button>
-        </div>
+          <Form.Text id="emailHelpBlock" muted> 
+          <p className={"text-danger"}>
+              E-post må inneholde @ 
+          </p>                     
+          </Form.Text>
+           )}
+        </Form.Group>
+        <Form.Group controlId="password">
+          <Form.Label htmlFor="password">Passord</Form.Label>
+          <Form.Control
+            className={passwordInputClasses}
+            type="password"
+            id="password"
+            onChange={passwordChangeHandler}
+            onBlur={passwordBlurHandler}
+            value={enteredPassword}
+            required
+            aria-describedby="passwordHelpBlock"
+            placeholder="Velg et pasord"
+          />
+          {passwordInputHasError && (
+          <Form.Text id="passwordHelpBlock" muted>  
+            <p className="text-danger">
+              Passord må inneholed mellom 8-16 tegn, minst en bokstav
+            </p>     
+          </Form.Text>
+           )}
+        </Form.Group>
 
-        <div className={classes.close}></div>
+        <Button type="submit" className={classes['btn-send']}>Fortsett</Button>
+      </Form>
+      <hr />
+      <div key="Google">
+        <Button className={classes['btn-social-google']} onClick={() => signIn("google")}><Google className={classes['social-icon']} />Logg inn med google</Button>
+      </div>
+
+      <div key="Facbook">
+        <Button className={classes['btn-social-facebook']} onClick={() => signIn("facebook")}>
+          <Facebook className={classes['social-icon']} /> Logg inn med Facebook
+        </Button>
+      </div>
+
+      <div className={classes.close}></div>
     </>
   );
 };

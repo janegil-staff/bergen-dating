@@ -1,10 +1,10 @@
 import { useState } from "react";
+import {Google, Facebook }from 'react-bootstrap-icons';
 import classes from "@/styles/auth.module.scss";
-import DatePicker from "react-datepicker";
+import { Button, Form } from "react-bootstrap";
 import { useRouter } from "next/router";
 import useInput from "@/hooks/use-input";
 import { createUser, signInUser } from "@/helpers/user-auth";
-import moment from "moment";
 
 const SignUp = (props) => {
   const { providers } = props;
@@ -93,10 +93,10 @@ const SignUp = (props) => {
 
   return (
     <>
-      <form onSubmit={submitHandler}>
+      <Form onSubmit={submitHandler}>
         {error && <p className={"error-text"}>{error}</p>}
-        <div className={classes["form-group"]}>
-          <label htmlFor="name">Brukernavn</label>
+        <Form.Group controlId="formName">
+          <Form.Label htmlFor="username">Brukernavn</Form.Label>
           <input
             className={namenputClasses}
             type="text"
@@ -105,16 +105,18 @@ const SignUp = (props) => {
             onBlur={nameBlurHandler}
             value={enteredName}
             required
-            aria-describedby="nameHelp"
+            aria-describedby="nameHelpBlock"
             placeholder="Ola Normann"
           />
           {nameInputHasError && (
-            <p className={"error-text"}>Navn feltet må ha innhold</p>
+            <Form.Text id="nameHelpBlock" className="text-danger" muted>  
+              <p className={"text-danger"}>Navn feltet må ha innhold</p>
+            </Form.Text>
           )}
-        </div>
-        <div className={classes["form-group"]}>
-          <label htmlFor="email">E-post</label>
-          <input
+        </Form.Group>
+        <Form.Group controlId="formEmail">
+          <Form.Label htmlFor="email">E-post</Form.Label>
+          <Form.Control
             className={emailInputClasses}
             type="email"
             id="email"
@@ -122,16 +124,18 @@ const SignUp = (props) => {
             onBlur={emailBlurHandler}
             value={enteredEmail}
             required
-            aria-describedby="emailHelp"
+            aria-describedby="emailHelpBlock"
             placeholder="ola@normann.com"
           />
           {emailInputHasError && (
-            <p className={"error-text"}>E-post må inneholde @</p>
+            <Form.Text id="nameHelpBlock" muted>  
+            <p className="text-danger">E-post må inneholde @</p>
+            </Form.Text>
           )}
-        </div>
-        <div className={classes["form-group"]}>
-          <label htmlFor="password">Passord</label>
-          <input
+        </Form.Group>
+        <Form.Group ccontrolId="formPassword">
+          <Form.Label htmlFor="password">Passord</Form.Label>
+          <Form.Control
             className={passwordInputClasses}
             type="password"
             id="password"
@@ -139,18 +143,20 @@ const SignUp = (props) => {
             onBlur={passwordBlurHandler}
             value={enteredPassword}
             required
-            aria-describedby="paswordHelp"
+            aria-describedby="paswordHelpBlock"
             placeholder="Velg et pasord"
           />
           {passwordInputHasError && (
-            <p className={"error-text"}>
+            <Form.Text id="nameHelpBlock" muted>  
+            <p className={"text-danger"}>
               Passord må inneholed mellom 8-16 tegn, minst en bokstav
             </p>
+            </Form.Text>
           )}
-        </div>
-        <div className={classes["form-group"]}>
-          <label htmlFor="passwordConfirmation">Gjenta passord</label>
-          <input
+        </Form.Group>
+        <Form.Group controlId="formPasswordConfimation">
+          <Form.Label htmlFor="passwordConfirmation">Gjenta passord</Form.Label>
+          <Form.Control
             className={passwordConfirmationInputClasses}
             type="password"
             id="password"
@@ -158,28 +164,28 @@ const SignUp = (props) => {
             onBlur={passwordConfirmationBlurHandler}
             value={enteredPasswordConfirmation}
             required
-            aria-describedby="paswordHelp"
+            aria-describedby="paswordConsfirmHelpBlock"
             placeholder="Gjenta pasord"
           />
           {passwordConfirmationInputHasError && (
-            <p className={"error-text"}>Må være lik dit valgte pasord</p>
+            <Form.Text id="paswordConsfirmHelpBlock" muted> 
+            <p className={"text-danger"}>Må være lik dit valgte pasord</p>
+            </Form.Text>
           )}
-        </div>
-        <p className={classes["full-width"]}>
-          <button>Send</button>
-        </p>
-      </form>
-
+        </Form.Group>
+          <button className={classes['btn-send']}>Fortsett</button>  
+      </Form>
+            <hr />
       <div key="Google">
-          <button onClick={() => signIn("google")}>
-            Sign in with Google
-          </button>
+          <Button className={classes['btn-social-google']} onClick={() => signIn("google")}>
+            <Google className={classes['social-icon']} /> Registresr med Google
+          </Button>
         </div>
  
         <div key="Facbook">
-          <button onClick={() => signIn("facebook")}>
-            Sign in with Facebook
-          </button>
+          <Button className={classes['btn-social-facebook']} onClick={() => signIn("facebook")}>
+            <Facebook className={classes['social-icon']} /> Registrer med Facebook
+          </Button>
         </div>
 
         <div className={classes.close}></div>

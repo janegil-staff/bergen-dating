@@ -1,4 +1,5 @@
 import Layout from "@/components/layout/layout";
+import '@/styles/customBootstrap.scss'
 import "@/styles/globals.scss";
 import { SessionProvider } from "next-auth/react";
 export default function App({

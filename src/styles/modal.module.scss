@@ -9,12 +9,12 @@
 }
 
 .modal-container {
- padding: 25px;
+  padding: 25px;
   background-color: whitesmoke;
   border-radius: 15px;
   box-shadow: 5px 5px 10px #1e1e1e;
   display: inline-block;
-
+  min-width: 350px;
   align-items: center;
   position: relative;
 }

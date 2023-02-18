@@ -21,26 +21,25 @@ const LandingPage = (props) => {
           Logg inn
         </button>
       </nav>
+   
       <h1 className={classes.title}>Finn Bergensere</h1>
-      <div className={classes["btn-group"]}>
-        <button
-          onClick={() => setSignUpIsOpen(true)}
-          className={classes["btn-signup"]}
-        >
-          Opprett konto
-        </button>
-    
-      </div>
-    
+      <button
+        onClick={() => setSignUpIsOpen(true)}
+        className={classes["btn-signup"]}
+      >
+        Opprett konto
+      </button>
+      
+      <Modal isOpen={isLogInOpen} setIsOpen={setLogInIsOpen}>
+        <SignIn setIsOpen={setLogInIsOpen} />
+        <div className={classes.close}></div>
+      </Modal>
       <Modal isOpen={isSignUpOpen} setIsOpen={setSignUpIsOpen}>
         <SignUp setIsOpen={setLogInIsOpen} />
         <div className={classes.close}></div>
       </Modal>
 
-      <Modal isOpen={isLogInOpen} setIsOpen={setLogInIsOpen}>
-        <SignIn setIsOpen={setLogInIsOpen} />
-        <div className={classes.close}></div>
-      </Modal>
+   
     </div>
   );
 };
